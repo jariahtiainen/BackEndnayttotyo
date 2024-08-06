@@ -6,7 +6,7 @@
   </head>
   <body>
     <header>
-      <h1>Liikuntaryhmät</h1>
+      <h1><a href="<?=BASEURL?>">Liikuntaryhmät</a></h1>
     </header>
     <section>
       <?=$this->section('content')?>
