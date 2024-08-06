@@ -15,10 +15,14 @@
     // Selvitetään mitä sivua on kutsuttu ja suoritetaan sivua vastaava
     // käsittelijä.
     if ($request === '/' || $request === '/tapahtumat') {
-      echo $templates->render('tapahtumat');
-    } else if ($request === '/tapahtuma') {
+        require_once MODEL_DIR . 'tapahtuma.php';
+        $tapahtumat = haeTapahtumat();                                       //hakee tapahtumat tietokannasta
+        echo $templates->render('tapahtumat',['tapahtumat' => $tapahtumat]); //ja välitetään eteenpäin plates-luokan render-funktion parametrinä
+    } 
+    else if ($request === '/tapahtuma') {
       echo $templates->render('tapahtuma');
-    } else {
+    } 
+    else {
       echo $templates->render('notfound');
     }
   

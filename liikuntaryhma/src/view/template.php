@@ -6,14 +6,14 @@
   </head>
   <body>
     <header>
-      <h1>liikuntaryhma</h1>
+      <h1>Liikuntaryhmät</h1>
     </header>
     <section>
       <?=$this->section('content')?>
     </section>
     <footer>
       <hr>
-      <div>liikuntaryhma by Kurpitsa</div>
+      <div>Liikuntaryhmät by Kurpitsa</div>
     </footer>
   </body>
 </html>
