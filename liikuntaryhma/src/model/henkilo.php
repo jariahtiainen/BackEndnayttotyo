@@ -7,4 +7,9 @@
     return DB::lastInsertId();  //funktio palauttaa lisätyn henkilön idhenkilo-tunnisteen
   }
 
+  function haeHenkiloSahkopostilla($email) {
+    return DB::run('SELECT * FROM jäsen WHERE email = ?;', [$email])->fetchAll();
+  }
+
+
 ?>
