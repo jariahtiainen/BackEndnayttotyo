@@ -14,26 +14,28 @@
 
     // Selvitetään mitä sivua on kutsuttu ja suoritetaan sivua vastaava
     // käsittelijä.
-    if ($request === '/' || $request === '/tapahtumat') {
+   
+    switch ($request) {
+      case '/':
+      case '/tapahtumat':
         require_once MODEL_DIR . 'tapahtuma.php';
-        $tapahtumat = haeTapahtumat();                                       //hakee tapahtumat tietokannasta
+        $tapahtumat = haeTapahtumat();                                       //hae tapahtumat tietokannasta
         echo $templates->render('tapahtumat',['tapahtumat' => $tapahtumat]); //ja välitetään eteenpäin plates-luokan render-funktion parametrinä
-    } 
-    else if ($request === '/tapahtuma') {
+        break;
+      case '/tapahtuma':
         require_once MODEL_DIR . 'tapahtuma.php';
         $tapahtuma = haeTapahtuma($_GET['id']);
         if ($tapahtuma) {
           echo $templates->render('tapahtuma',['tapahtuma' => $tapahtuma]);
         } else {
           echo $templates->render('tapahtumanotfound');
-        } 
-    }
-    else if ($request === '/lisaa_tili') {
-      echo $templates->render('lisaa_tili');
-    }
-    else {
-      echo $templates->render('notfound');
-    }
-  
+        }
+        break;
+      case '/lisaa_tili':
+        echo $templates->render('lisaa_tili');
+        break;
+      default:
+        echo $templates->render('notfound');
+    } 
 
 ?> 
