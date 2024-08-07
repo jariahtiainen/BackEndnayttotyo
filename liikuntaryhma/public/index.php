@@ -1,4 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
+<?php
   // Suoritetaan projektin alustusskripti.
   require_once '../src/init.php';
 
@@ -32,15 +38,18 @@
         }
         break;
       case '/lisaa_tili':
-        if (isset($_POST['laheta'])) {                                                              //jos laheta nappi on painettu eli POST[] on jotain
-          $formdata = cleanArrayData($_POST);                                                       //siivotaan POST[] sisältö      
-          require_once MODEL_DIR . 'henkilo.php';
-          $salasana = password_hash($formdata['salasana1'], PASSWORD_DEFAULT);                      //hashaa (nyt siivottu) käyttäjän antama salasana
-          $id = lisaaHenkilo($formdata['nimi'],$formdata['email'],$formdata['kaupunki'],$salasana); //lisää käyttäjän antamat tiedot tietokantaan
-          echo "Tili on luotu tunnisteella $id";                                           //näytä teksti ja lisaaHenkilo funktion palauttama id
+        if (isset($_POST['laheta'])) {                                                              
+          $formdata = cleanArrayData($_POST);                                                             
+          require_once CONTROLLER_DIR . 'tili.php';
+          $tulos = lisaaTili($formdata);
+          if ($tulos['status'] == "200") {
+          echo "Tili on luotu tunnisteella $tulos[id]";
+          break;
+          }
+          echo $templates->render('lisaa_tili', ['formdata' => $formdata, 'error' => $tulos['error']]);
           break;
         } else {
-          echo $templates->render('lisaa_tili');  //näytä lisää-tili sivu
+          echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
           break;
         }
       default:

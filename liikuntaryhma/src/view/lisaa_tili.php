@@ -5,19 +5,21 @@
 <form action="" method="POST">
   <div>
     <label for="nimi">Nimi:</label>
-    <input id="nimi" type="text" name="nimi">
-  </div>
+    <input id="nimi" type="text" name="nimi" value="<?= getValue($formdata,'nimi') ?>">
+    <div class="error"><?= getValue($error,'nimi'); ?></div>
   <div>
     <label for="email">Sähköposti:</label>
-    <input id="email" type="email" name="email">
+    <input type="text" name="email" value="<?= getValue($formdata,'email') ?>">
+    <div class="error"><?= getValue($error,'email'); ?></div>
   </div>
   <div>
     <label for="kaupunki">Kaupunki:</label>
-    <input id="kaupunki" type="text" name="kaupunki">
-  </div>
+    <input id="kaupunki" type="text" name="kaupunki" value="<?= getValue($formdata,'kaupunki')?>">
+    <div class="error"><?= getValue($error,'kaupunki'); ?></div>
   <div>
     <label for="salasana1">Salasana:</label>
-    <input id="salasana1" type="password" name="salasana1">
+    <input type="password" name="salasana1">
+    <div class="error"><?= getValue($error,'salasana'); ?></div>
   </div>
   <div>
     <label for="salasana2">Salasana uudelleen:</label>

@@ -61,7 +61,7 @@
   .tapahtumat > div > div:nth-child(3) {
     text-align: right;
   }
-  
+
 /*Uuden tilin luonti lomake*/
   form > div {
     display: flex;
@@ -82,6 +82,11 @@
     font-weight: bold;
     min-width: 12rem;
     margin: 1rem auto;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.8rem;
   }
   
   
