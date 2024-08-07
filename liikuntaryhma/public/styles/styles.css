@@ -9,6 +9,7 @@
   html {
     font-family: 'Rubik', sans-serif;
     background: rgb(255, 255, 255);
+    background: linear-gradient(120deg, rgb(0, 24, 34) 0%, rgba(9,136,144,1) 36%, rgb(84, 130, 190) 100%);
     /*background-image: url(../images/outdoor-group-training_big.png);*/
     background-size: cover;
     background-repeat: no-repeat;
@@ -23,7 +24,7 @@
   } 
 
   header {
-    background-color: #B8BAC8;
+    background-color: rgb(84, 130, 190) 100%;
     padding: 1rem 1.5rem;
   }
 
@@ -60,6 +61,30 @@
   .tapahtumat > div > div:nth-child(3) {
     text-align: right;
   }
+  
+/*Uuden tilin luonti lomake*/
+  form > div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+  }
+  input {
+    border: 1px solid #999;
+    border-radius: 0.3rem;
+    padding: 0.45rem;
+    font-size: 1rem;
+  }
+  input[type=submit] {
+    padding: 0.5rem 3rem;
+    border-radius: 0.3rem;
+    background-color: rgba(9,136,144,1);
+    color: #fff;
+    font-weight: bold;
+    min-width: 12rem;
+    margin: 1rem auto;
+  }
+  
+  
   
   
   
