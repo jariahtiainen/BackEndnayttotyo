@@ -89,6 +89,19 @@
     font-size: 0.8rem;
   }
   
+  .info {
+    background-color: rgba(9, 135, 144, 0.226);
+    border: 1px solid #999;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: center;
+  }
+  
+  .info a {
+    color: #975579;
+  }
+  
   
   
   

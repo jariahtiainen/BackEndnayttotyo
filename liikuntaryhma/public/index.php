@@ -52,7 +52,11 @@ error_reporting(E_ALL);
           echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
           break;
         }
-      default:
+        case '/kirjaudu':
+          echo $templates->render('kirjaudu', [ 'error' => []]);
+          break;
+    
+        default:
         echo $templates->render('notfound');
     } 
 
