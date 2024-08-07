@@ -32,14 +32,15 @@
         }
         break;
       case '/lisaa_tili':
-        if (isset($_POST['laheta'])) {
+        if (isset($_POST['laheta'])) {                                                              //jos laheta nappi on painettu eli POST[] on jotain
+          $formdata = cleanArrayData($_POST);                                                       //siivotaan POST[] sisältö      
           require_once MODEL_DIR . 'henkilo.php';
-          $salasana = password_hash($_POST['salasana1'], PASSWORD_DEFAULT);
-          $id = lisaaHenkilo($_POST['nimi'],$_POST['email'],$_POST['kaupunki'],$salasana);
-          echo "Tili on luotu tunnisteella $id";
+          $salasana = password_hash($formdata['salasana1'], PASSWORD_DEFAULT);                      //hashaa (nyt siivottu) käyttäjän antama salasana
+          $id = lisaaHenkilo($formdata['nimi'],$formdata['email'],$formdata['kaupunki'],$salasana); //lisää käyttäjän antamat tiedot tietokantaan
+          echo "Tili on luotu tunnisteella $id";                                           //näytä teksti ja lisaaHenkilo funktion palauttama id
           break;
         } else {
-          echo $templates->render('lisaa_tili');
+          echo $templates->render('lisaa_tili');  //näytä lisää-tili sivu
           break;
         }
       default:
