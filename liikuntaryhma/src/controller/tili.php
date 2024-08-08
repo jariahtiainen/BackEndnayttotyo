@@ -1,6 +1,6 @@
 <?php
 
-function lisaaTili($formdata) {
+function lisaaTili($formdata, $baseurl='') {
 
   // Tuodaan henkilo-mallin funktiot, joilla voidaan lisätä
   // henkilön tiedot tietokantaan.
@@ -84,7 +84,7 @@ function lisaaTili($formdata) {
 
     // Lisätään henkilö tietokantaan. Jos lisäys onnistui,
     // tulee palautusarvona lisätyn henkilön id-tunniste.
-    $idhenkilo = lisaaHenkilo($nimi,$email,$kaupunki,$salasana);
+    $jäsen_id = lisaaHenkilo($nimi,$email,$kaupunki,$salasana);
 
     // Palautetaan JSON-tyyppinen taulukko, jossa:
     //  status   = Koodi, joka kertoo lisäyksen onnistumisen.
@@ -101,22 +101,34 @@ function lisaaTili($formdata) {
 
     // Tarkistetaan onnistuiko henkilön tietojen lisääminen.
     // Jos idhenkilo-muuttujassa on positiivinen arvo,
-    // onnistui rivin lisääminen. Muuten lisäämisessä ilmeni
+    // onnistui rivin lisääminen. Muuten liäämisessä ilmeni
     // ongelma.
-    if ($idhenkilo) {
-      return [
-        "status" => 200,
-        "id"     => $idhenkilo,
-        "data"   => $formdata
-      ];
-    } else {
-      return [
-        "status" => 500,
-        "data"   => $formdata
-      ];
-    }
+    if ($jäsen_id) {
 
-  } else {
+      // Luodaan käyttäjälle aktivointiavain ja muodostetaan
+      // aktivointilinkki.
+      require_once(HELPERS_DIR . "secret.php");
+      $avain = generateActivationCode($email);
+      $url = 'https://' . $_SERVER['HTTP_HOST'] . $baseurl . "/vahvista?key=$avain";
+
+      // Päivitetään aktivointiavain tietokantaan ja lähetetään
+      // käyttäjälle sähköpostia. Jos tämä onnistui, niin palautetaan
+      // palautusarvona tieto tilin onnistuneesta luomisesta. Muuten
+      // palautetaan virhekoodi, joka ilmoittaa, että jokin
+      // lisäyksessä epäonnistui.
+      if (paivitaVahvavain($email,$avain) && lahetaVahvavain($email,$url)) {
+        return [
+          "status" => 200,
+          "id"     => $jäsen_id,
+          "data"   => $formdata
+        ];
+      } else {
+        return [
+          "status" => 500,
+          "data"   => $formdata
+        ];
+      }
+    } else {
 
     // Lomaketietojen tarkistuksessa ilmeni virheitä.
     return [
@@ -127,7 +139,17 @@ function lisaaTili($formdata) {
 
   }
 }
-
+}
+function lahetaVahvavain($email,$url) {
+  $message = "Hei!\n\n" . 
+             "Olet rekisteröitynyt Liikuntaryhmä-palveluun tällä\n" . 
+             "sähköpostiosoitteella. Klikkaamalla alla olevaa\n" . 
+             "linkkiä vahvistat käyttämäsi sähköpostiosoitteen.\n\n" . 
+             "$url\n\n" .
+             "Jos et ole rekisteröitynyt Liikuntaryhmä-palveluun, niin\n" . 
+             "niin voit jättää tämän viestin huomiotta.\n\n";
+  return mail($email,'Liikuntaryhmä-tilin aktivointilinkki',$message);
+}
 
 
 ?>
