@@ -11,5 +11,10 @@
     return DB::run('SELECT * FROM jäsen WHERE email = ?;', [$email])->fetchAll();
   }
 
+  function haeHenkilo($email) {
+    return DB::run('SELECT * FROM jäsen WHERE email = ?;', [$email])->fetch();
+  }
+
+
 
 ?>
