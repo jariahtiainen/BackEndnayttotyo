@@ -58,8 +58,8 @@ error_reporting(E_ALL);
           if (isset($_POST['laheta'])) {
             require_once CONTROLLER_DIR . 'kirjaudu.php';
             if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
-               $_SESSION['user'] = $_POST['email'];                           //käyttäjän email tallennetaan 'user' istuntomuuttujaan
-               header("Location: " . $config['urls']['baseUrl']);             //header("Location: ") sends user to appended addres
+               $_SESSION['user'] = $_POST['email'];                           
+               header("Location: " . $config['urls']['baseUrl']);             //header("Location: ") function sends user to appended address
             } else {
               echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
             }
@@ -67,9 +67,12 @@ error_reporting(E_ALL);
             echo $templates->render('kirjaudu', [ 'error' => []]);
           }
           break;
-    
-    
-    
+        case "/logout":
+          require_once CONTROLLER_DIR . 'kirjaudu.php';
+          logout();
+          header("Location: " . $config['urls']['baseUrl']);
+          break;
+          
         default:
         echo $templates->render('notfound');
     } 
