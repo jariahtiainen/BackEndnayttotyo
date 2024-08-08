@@ -74,7 +74,7 @@
     padding: 0.45rem;
     font-size: 1rem;
   }
-  input[type=submit] {
+  input[type=submit], .button {
     padding: 0.5rem 3rem;
     border-radius: 0.3rem;
     background-color: rgba(9,136,144,1);
@@ -82,6 +82,9 @@
     font-weight: bold;
     min-width: 12rem;
     margin: 1rem auto;
+  }
+  .button {
+    text-decoration: none;
   }
   
   .error {
@@ -110,6 +113,14 @@
     align-items: center;
     font-size: 0.8rem;
   }
+
+  .flexarea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
   
   
   
