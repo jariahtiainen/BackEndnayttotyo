@@ -38,24 +38,24 @@ error_reporting(E_ALL);
         $tapahtumat = haeTapahtumat();                                       //hae tapahtumat tietokannasta
         echo $templates->render('tapahtumat',['tapahtumat' => $tapahtumat]); //ja välitetään eteenpäin plates-luokan render-funktion parametrinä
         break;
-        case '/tapahtuma':
-          require_once MODEL_DIR . 'tapahtuma.php';
-          require_once MODEL_DIR . 'ilmoittautuminen.php';
-          $tapahtuma = haeTapahtuma($_GET['id']);
-          if ($tapahtuma) {
-            if ($loggeduser) {
-              $ilmoittautuminen = haeIlmoittautuminen($loggeduser['idhenkilo'],$tapahtuma['idtapahtuma']);
-            } else {
-              $ilmoittautuminen = NULL;
-            }
-            echo $templates->render('tapahtuma',['tapahtuma' => $tapahtuma,
-                                                 'ilmoittautuminen' => $ilmoittautuminen,
-                                                 'loggeduser' => $loggeduser]);
+      case '/tapahtuma':
+        require_once MODEL_DIR . 'tapahtuma.php';
+        require_once MODEL_DIR . 'ilmoittautuminen.php';
+        $tapahtuma = haeTapahtuma($_GET['id']);
+        if ($tapahtuma) {
+          if ($loggeduser) {
+            $ilmoittautuminen = haeIlmoittautuminen($loggeduser['jäsen_id'],$tapahtuma['tapahtuma_id']);
           } else {
-            echo $templates->render('tapahtumanotfound');
+            $ilmoittautuminen = NULL;
           }
-          break;
-    
+          echo $templates->render('tapahtuma',['tapahtuma' => $tapahtuma,
+                                                'ilmoittautuminen' => $ilmoittautuminen,
+                                                'loggeduser' => $loggeduser]);
+        } else {
+          echo $templates->render('tapahtumanotfound');
+        }
+        break;
+  
       case '/lisaa_tili':
         if (isset($_POST['laheta'])) {                                                              
           $formdata = cleanArrayData($_POST);                                                             
@@ -71,28 +71,52 @@ error_reporting(E_ALL);
           echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
           break;
         }
-        case "/kirjaudu":
-          if (isset($_POST['laheta'])) {
-            require_once CONTROLLER_DIR . 'kirjaudu.php';
-            if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
-               session_regenerate_id();
-               $_SESSION['user'] = $_POST['email'];                           
-               header("Location: " . $config['urls']['baseUrl']);             //header("Location: ") function sends user to appended address
-            } else {
-              echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
-            }
-          } else {
-            echo $templates->render('kirjaudu', [ 'error' => []]);
-          }
-          break;
-        case "/logout":
+      case "/kirjaudu":
+        if (isset($_POST['laheta'])) {
           require_once CONTROLLER_DIR . 'kirjaudu.php';
-          logout();
-          header("Location: " . $config['urls']['baseUrl']);
-          break;
-          
-        default:
-        echo $templates->render('notfound');
+          if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
+              session_regenerate_id();
+              $_SESSION['user'] = $_POST['email'];                           
+              header("Location: " . $config['urls']['baseUrl']);             //header("Location: ") function sends user to appended address (front page)
+          } else {
+            echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
+          }
+        } else {
+          echo $templates->render('kirjaudu', [ 'error' => []]);
+        }
+        break;
+      case "/logout":
+        require_once CONTROLLER_DIR . 'kirjaudu.php';
+        logout();
+        header("Location: " . $config['urls']['baseUrl']);
+        break;
+      case '/ilmoittaudu':
+        if ($_GET['id']) {
+          require_once MODEL_DIR . 'ilmoittautuminen.php';
+          $tapahtuma_id = $_GET['id'];
+          if ($loggeduser) {
+            lisaaIlmoittautuminen($loggeduser['jäsen_id'],$tapahtuma_id);
+          }
+          header("Location: tapahtuma?id=$tapahtuma_id");
+        } else {
+          header("Location: tapahtumat");
+        }
+        break;
+      case '/peru':
+        if ($_GET['id']) {
+          require_once MODEL_DIR . 'ilmoittautuminen.php';
+          $tapahtuma_id = $_GET['id'];
+          if ($loggeduser) {
+            poistaIlmoittautuminen($loggeduser['jäsen_id'],$tapahtuma_id);
+          }
+          header("Location: tapahtuma?id=$tapahtuma_id");
+        } else {
+          header("Location: tapahtumat");  
+        }
+        break;
+    
+      default:
+      echo $templates->render('notfound');
     } 
 
 ?> 

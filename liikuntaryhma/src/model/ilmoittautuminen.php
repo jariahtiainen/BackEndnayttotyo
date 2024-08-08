@@ -2,20 +2,20 @@
 
   require_once HELPERS_DIR . 'DB.php';
 
-  function haeIlmoittautuminen($idhenkilo,$idtapahtuma) {
+  function haeIlmoittautuminen($jäsen_id,$tapahtuma_id) {
     return DB::run('SELECT * FROM liik_ilmoittautuminen WHERE jäsen_id = ? AND tapahtuma_id = ?',
-                   [$idhenkilo, $idtapahtuma])->fetchAll();
+                   [$jäsen_id, $tapahtuma_id])->fetchAll();
   }
 
-  function lisaaIlmoittautuminen($idhenkilo,$idtapahtuma) {
+  function lisaaIlmoittautuminen($jäsen_id,$tapahtuma_id) {
     DB::run('INSERT INTO liik_ilmoittautuminen (jäsen_id, tapahtuma_id) VALUE (?,?)',
-            [$idhenkilo, $idtapahtuma]);
+            [$jäsen_id, $tapahtuma_id]);
     return DB::lastInsertId();
   }
 
-  function poistaIlmoittautuminen($idhenkilo, $idtapahtuma) {
+  function poistaIlmoittautuminen($jäsen_id, $tapahtuma_id) {
     return DB::run('DELETE FROM liik_ilmoittautuminen  WHERE jäsen_id = ? AND tapahtuma_id = ?',
-                   [$idhenkilo, $idtapahtuma])->rowCount();
+                   [$jäsen_id, $tapahtuma_id])->rowCount();
   }
 
 ?>
