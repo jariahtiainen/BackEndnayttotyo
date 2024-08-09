@@ -7,6 +7,7 @@
         
   </head>
   <body>
+  
     <header>
       <h1><a href="<?=BASEURL?>">Liikuntaryhmät</a></h1>
       <div class="profile">
@@ -25,11 +26,13 @@
     </header>
     
     <section>
+
       <?=$this->section('content')?>
+      
     </section>
-    
+        
     <footer>
-      <hr>
+      
       <div>Liikuntaryhmät by Kurpitsa</div>
     </footer>
   </body>

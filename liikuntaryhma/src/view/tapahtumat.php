@@ -13,6 +13,7 @@ foreach ($tapahtumat as $tapahtuma) {
   echo "<div>";
     echo "<div>$tapahtuma[nimi]</div>";
     echo "<div>" . $start->format('j.n.Y ') . "klo " . $start->format('G:i') . "</div>";
+    echo "<div>$tapahtuma[kaupunki]</div>";
     echo "<div><a href='tapahtuma?id=" . $tapahtuma['tapahtuma_id'] . "'>TIEDOT</a></div>";
   echo "</div>";
 

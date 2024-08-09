@@ -7,6 +7,7 @@
     <label for="nimi">Nimi:</label>
     <input id="nimi" type="text" name="nimi" value="<?= getValue($formdata,'nimi') ?>">
     <div class="error"><?= getValue($error,'nimi'); ?></div>
+  </div>
   <div>
     <label for="email">Sähköposti:</label>
     <input type="text" name="email" value="<?= getValue($formdata,'email') ?>">
@@ -16,6 +17,7 @@
     <label for="kaupunki">Kaupunki:</label>
     <input id="kaupunki" type="text" name="kaupunki" value="<?= getValue($formdata,'kaupunki')?>">
     <div class="error"><?= getValue($error,'kaupunki'); ?></div>
+    </div>
   <div>
     <label for="salasana1">Salasana:</label>
     <input type="password" name="salasana1">

@@ -2,7 +2,7 @@
 
 <h1>Unohtunut salasana</h1>
 
-<p>Voit vaihtaa unohtuneen salasanan vaihtolinkillä avulla. Vaihtolinkin voit tilata sähköpostiisi alla olevalla lomakkeella.</p>
+<p>Voit vaihtaa unohtuneen salasanan vaihtolinkillä avulla.<br> Vaihtolinkin voit tilata sähköpostiisi alla olevalla lomakkeella.</p>
 
 <form action="" method="POST">
   <div>
