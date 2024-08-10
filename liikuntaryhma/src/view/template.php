@@ -10,6 +10,13 @@
   
     <header>
       <h1><a href="<?=BASEURL?>">Liikuntaryhmät</a></h1>
+
+      <form action="tapahtumat" method="get" class="search-bar">
+        <input type="text" name="kaupunki" placeholder="Hae kaupungin mukaan" value="<?= isset($_GET['kaupunki']) ? htmlspecialchars($_GET['kaupunki']) : '' ?>">
+      <button type="submit">Search</button>
+      </form>
+
+
       <div class="profile">
         <?php
           if (isset($_SESSION['user'])) {

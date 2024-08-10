@@ -38,9 +38,21 @@ error_reporting(E_ALL);
     case '/':
     case '/tapahtumat':
       require_once MODEL_DIR . 'tapahtuma.php';
+
+      // Get kaupunki parameter from the URL query string
+      $kaupunki = isset($_GET['kaupunki']) ? $_GET['kaupunki'] : '';
+
+      // Fetch events based on the kaupunki parameter
+      $tapahtumat = haeTapahtumat($kaupunki);
+
+      // Render the template with the fetched events
+      echo $templates->render('tapahtumat', ['tapahtumat' => $tapahtumat, 'kaupunki' => $kaupunki]);
+      break;
+      /*
       $tapahtumat = haeTapahtumat();   //hae tapahtumat tietokannasta
       echo $templates->render('tapahtumat',['tapahtumat' => $tapahtumat]); //ja välitetään eteenpäin plates-luokan render-funktion parametrinä
       break;
+      */
     case '/tapahtuma':
       require_once MODEL_DIR . 'tapahtuma.php';
       require_once MODEL_DIR . 'ilmoittautuminen.php';

@@ -36,6 +36,8 @@
     color: #000;
     text-decoration: none;
   }
+
+  
   
   section {
     flex: 1;
@@ -68,7 +70,11 @@
   }
 
 /* Etusivun tapahtumat tyylit */
+  
+  .tapahtumat {
 
+  }
+  
   .tapahtumat > div {
     display: flex;
     justify-content: space-around;
@@ -194,6 +200,18 @@
     align-items: center;
     margin-top: 1rem;
   }
+
+  .search-bar {
+    display: flex;
+
+  }
+  .search-bar input {
+    border-radius: 15px;
+  }
+  .search-bar button {
+    padding: 6px 14px;
+    border-radius: 15px;
+  }
   
   @media screen and (max-width: 500px) {
     
@@ -209,6 +227,25 @@
   .event-name, .event-time, .event-city, .event-details {
       min-width: auto; /* Remove fixed min-width to allow for better wrapping */
   }
+
+  header {
+    flex-direction: column;
+    padding: 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .search-bar {
+    max-width: 100%;
+  }
+
+  .search-bar input {
+    padding: 6px;
+  }
+
+  .search-bar button {
+    padding: 6px 12px;
+  }
+
   }
   
   

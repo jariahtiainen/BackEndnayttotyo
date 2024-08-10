@@ -9,6 +9,7 @@
 <div>Kuvaus: <?=$tapahtuma['kuvaus']?></div>
 <div>Alkaa: <?=$start->format('j.n.Y G:i')?></div>
 <div>Kesto: <?=$tapahtuma['kesto']?></div>
+<div>Osallistujien määrä: Todo</div>
 </div>
 
 <?php
