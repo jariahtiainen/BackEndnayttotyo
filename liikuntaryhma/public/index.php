@@ -103,7 +103,7 @@ error_reporting(E_ALL);
 
         foreach ($requiredFields as $field) {
           if (empty($formdata[$field])) {
-            $errors[$field] = ucfirst($field) . ' is required.';
+           'Täytä ' . $errors[$field] = ucfirst($field) . ' vaaditaan.';
           }
         }
 

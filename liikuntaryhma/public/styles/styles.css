@@ -157,6 +157,24 @@
   .button:hover {
     background-color: rgba(9, 135, 144, 0.884);
   }
+
+  .button-container {
+    position: relative;
+    
+  }
+  
+  .notification-message {
+    color: rgba(255, 0, 0, 0.9);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    max-width: 200px;
+  }
+
+  .error-field {
+    border: 2px solid red;
+    background-color: #fdd;
+  }
+
   .luotapahtumabutton {
     background-color: #008CBA;
     color: white;
