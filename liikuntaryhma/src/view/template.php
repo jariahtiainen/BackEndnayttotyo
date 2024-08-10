@@ -13,9 +13,10 @@
 
       <form action="tapahtumat" method="get" class="search-bar">
         <input type="text" name="kaupunki" placeholder="Hae kaupungin mukaan" value="<?= isset($_GET['kaupunki']) ? htmlspecialchars($_GET['kaupunki']) : '' ?>">
-      <button type="submit">Search</button>
+      <button type="submit">Hae</button>
       </form>
 
+      <a class="luotapahtumabutton" href="lisaa_tapahtuma">Luo oma tapahtuma</a>
 
       <div class="profile">
         <?php
@@ -28,7 +29,7 @@
           } else {
             echo "<div><a href='kirjaudu'>Kirjaudu</a></div>";
           }
-          echo "<div><a href='lisaa_tapahtuma'>Luo tapahtuma</a></div>";
+          
         ?>
       </div>
     </header>

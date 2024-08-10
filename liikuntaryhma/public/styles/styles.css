@@ -44,7 +44,7 @@
     /* display: block; */
     padding: 1.5rem 1rem 1rem 1rem;
     
-    max-width: 40rem;
+    max-width: 30rem;
     /* padding: 15px; */
     margin-left: auto;
     margin-right: auto;
@@ -71,19 +71,7 @@
 
 /* Etusivun tapahtumat tyylit */
   
-  .tapahtumat {
-
-  }
   
-  .tapahtumat > div {
-    display: flex;
-    justify-content: space-around;
-    padding: 8px;
-    /* display: grid;
-    grid-template-columns: 50% 25% 25%; */
-    word-break: break-all;
-    
-  }
   
   .event {
     display: grid;
@@ -112,7 +100,7 @@
   }
   .event-city {
       color: #555;
-      min-width: 75px;
+      min-width: 80px;
   }
   .event-details {
     text-align: center;
@@ -160,13 +148,30 @@
     color: #fff;
     font-weight: bold;
     margin: 1rem auto;
-    
+    cursor: pointer;
   }
   .button {
     text-decoration: none;
     text-align: center;
   }
-  
+  .button:hover {
+    background-color: rgba(9, 135, 144, 0.884);
+  }
+  .luotapahtumabutton {
+    background-color: #008CBA;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+  .luotapahtumabutton:hover {
+    background-color: #008bbad7;
+  }
+
   .error {
     color: red;
     font-size: 0.8rem;
@@ -211,8 +216,18 @@
   .search-bar button {
     padding: 6px 14px;
     border-radius: 15px;
+    border: none;
+    background-color: rgba(9,136,144,1);
+    color: #fff;
+    cursor: pointer;
+  }
+  .search-bar button:hover {
+    background-color: rgba(9, 135, 144, 0.884);
   }
   
+
+
+
   @media screen and (max-width: 500px) {
     
   .event {
@@ -230,22 +245,42 @@
 
   header {
     flex-direction: column;
-    padding: 0.5rem;
+    padding: 1rem;
     font-size: 0.7rem;
   }
 
+  .luotapahtumabutton {
+    background-color: #008CBA;
+    color: white;
+    padding: 14px 25px;
+    margin-top: 12px;
+    display: inline-block;
+    
+  }
+
   .search-bar {
-    max-width: 100%;
+    display: flex;
+    margin-top: 10px;
   }
 
-  .search-bar input {
-    padding: 6px;
+  .tapahtumat > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 8px;
+    /* display: grid;
+    grid-template-columns: 50% 25% 25%; */
+    word-break: break-all;
+    
   }
 
-  .search-bar button {
-    padding: 6px 12px;
+  .flexarea {
+    display: flex;
+    flex-direction: column;
+    
   }
 
+  
   }
   
   

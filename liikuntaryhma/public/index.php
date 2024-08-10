@@ -48,6 +48,7 @@ error_reporting(E_ALL);
       // Render the template with the fetched events
       echo $templates->render('tapahtumat', ['tapahtumat' => $tapahtumat, 'kaupunki' => $kaupunki]);
       break;
+
       /*
       $tapahtumat = haeTapahtumat();   //hae tapahtumat tietokannasta
       echo $templates->render('tapahtumat',['tapahtumat' => $tapahtumat]); //ja välitetään eteenpäin plates-luokan render-funktion parametrinä
@@ -93,7 +94,24 @@ error_reporting(E_ALL);
           echo $templates->render('login_required', ['error' => ['Kirjaudu sisään luodaksesi tapahtuman.']]);
           break;
         }
+
         $formdata = cleanArrayData($_POST);
+
+        // Check for empty fields
+        $errors = [];
+        $requiredFields = ['nimi', 'kuvaus', 'tap_alkaa', 'kesto', 'kaupunki', 'aloituspaikka'];
+
+        foreach ($requiredFields as $field) {
+          if (empty($formdata[$field])) {
+            $errors[$field] = ucfirst($field) . ' is required.';
+          }
+        }
+
+        if (!empty($errors)) {
+          echo $templates->render('lisaa_tapahtuma', ['formdata' => $formdata, 'error' => $errors]);
+          break;
+        }
+
         require_once MODEL_DIR . 'tapahtuma.php';
         // Extract data from $formdata
         $luoja_id = $formdata['luoja_id'];
