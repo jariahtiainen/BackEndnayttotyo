@@ -12,7 +12,7 @@
   }
 
   function haeHenkilo($email) {
-    return DB::run('SELECT * FROM jäsen WHERE email = ?;', [$email])->fetch();
+    return DB::run('SELECT jäsen_id, email, admin, vahvistettu FROM jäsen WHERE email = ?;', [$email])->fetch();
   }
 
   function paivitaVahvavain($email,$avain) {

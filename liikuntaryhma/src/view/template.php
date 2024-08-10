@@ -21,6 +21,7 @@
           } else {
             echo "<div><a href='kirjaudu'>Kirjaudu</a></div>";
           }
+          echo "<div><a href='lisaa_tapahtuma'>Luo tapahtuma</a></div>";
         ?>
       </div>
     </header>

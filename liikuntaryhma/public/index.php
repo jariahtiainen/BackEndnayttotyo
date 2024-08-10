@@ -36,11 +36,6 @@ error_reporting(E_ALL);
   
   switch ($request) {
     case '/':
-    case '/etusivu':
-      require_once MODEL_DIR . 'tapahtuma.php';
-      $tapahtumat = haeTapahtumat();   //hae tapahtumat tietokannasta
-      echo $templates->render('tapahtumat',['tapahtumat' => $tapahtumat]); //ja välitetään eteenpäin plates-luokan render-funktion parametrinä
-      break;
     case '/tapahtumat':
       require_once MODEL_DIR . 'tapahtuma.php';
       $tapahtumat = haeTapahtumat();   //hae tapahtumat tietokannasta
@@ -79,7 +74,38 @@ error_reporting(E_ALL);
         echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
         break;
       }
-   
+    case '/lisaa_tapahtuma':
+      if (isset($_POST['laheta'])) {
+        // Check if user is logged in
+        if (!isset($_SESSION['luoja_id'])) {
+          echo $templates->render('login_required', ['error' => ['Kirjaudu sisään luodaksesi tapahtuman.']]);
+          break;
+        }
+        $formdata = cleanArrayData($_POST);
+        require_once MODEL_DIR . 'tapahtuma.php';
+        // Extract data from $formdata
+        $luoja_id = $formdata['luoja_id'];
+        $nimi = $formdata['nimi'];
+        $kuvaus = $formdata['kuvaus'];
+        $tap_alkaa = $formdata['tap_alkaa'];
+        $kesto = $formdata['kesto'];
+        $kaupunki = $formdata['kaupunki'];
+        $aloituspaikka = $formdata['aloituspaikka'];
+        
+        $luoja_id = $_SESSION['luoja_id'];
+
+        $tulos = lisaaTapahtuma($luoja_id, $nimi, $kuvaus, $tap_alkaa, $kesto, $kaupunki, $aloituspaikka);
+        
+        if ($tulos['status'] == "200") {
+          echo $templates->render('tapahtuma_luotu', ['formdata' => $formdata]);
+          break;
+        }
+        echo $templates->render('lisaa_tapahtuma', ['formdata' => $formdata, 'error' => $tulos['error']]);
+        break;
+      } else {
+        echo $templates->render('lisaa_tapahtuma', ['formdata' => [], 'error' => []]);
+        break;
+      }
     case "/kirjaudu":
       if (isset($_POST['laheta'])) {
         require_once CONTROLLER_DIR . 'kirjaudu.php';
@@ -90,6 +116,7 @@ error_reporting(E_ALL);
             session_regenerate_id();
             $_SESSION['user'] = $user['email'];
             $_SESSION['admin'] = $user['admin'];
+            $_SESSION['luoja_id'] = $user['jäsen_id'];
             header("Location: " . $config['urls']['baseUrl']);
           } else {
             echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Tili on vahvistamatta! Ole hyvä, ja vahvista tili sähköpostissasi olevalla linkillä.']]);

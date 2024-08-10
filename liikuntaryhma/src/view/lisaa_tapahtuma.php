@@ -12,6 +12,10 @@
     <input id="kuvaus" type="text" name="kuvaus">
   </div>
   <div>
+    <label for="tap_alkaa">Tapahtuma alkaa:</label>
+    <input id="tap_alkaa" type="datetime-local" name="tap_alkaa">
+  </div>
+  <div>
     <label for="kesto">Kesto:</label>
     <input id="kesto" type="text" name="kesto">
   </div>
@@ -20,7 +24,7 @@
     <input id="kaupunki" type="text" name="kaupunki">
   </div>
   <div>
-    <label for="aloituspaikka">Aloituspaikka:</label>
+    <label for="aloituspaikka">Sijainti:</label>
     <input id="aloituspaikka" type="text" name="aloituspaikka">
   </div>
   <div>
