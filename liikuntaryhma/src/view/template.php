@@ -11,11 +11,13 @@
     <header>
       <h1><a href="<?=BASEURL?>">Liikuntaryhmät</a></h1>
 
+     <div class="header-content">
       <form action="tapahtumat" method="get" class="search-bar">
         <input type="text" name="kaupunki" placeholder="Hae kaupungin mukaan" value="<?= isset($_GET['kaupunki']) ? htmlspecialchars($_GET['kaupunki']) : '' ?>">
       <button type="submit">Hae</button>
       </form>
-
+    
+     <div class="actions">
       <a class="luotapahtumabutton" href="lisaa_tapahtuma">Luo oma tapahtuma</a>
 
       <div class="profile">
@@ -32,8 +34,10 @@
           
         ?>
       </div>
+     </div>
+     </div>
     </header>
-    
+  
     <section>
 
       <?=$this->section('content')?>

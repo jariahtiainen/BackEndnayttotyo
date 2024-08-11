@@ -26,26 +26,102 @@
     flex-direction: column;
     height: 100%;
   } 
-
+  
   header {
     background-color: rgb(84, 130, 190) 100%;
     padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    
   }
-
+  
   header a {
     color: #000;
     text-decoration: none;
   }
 
+  .header-content {
+    display: flex;
+    flex: 1; /* Take up all available space */
+    margin-left: 180px;
+    justify-content: center; /* Center contents horizontally */
+     /* Align contents vertically */
+    gap: 0px; /* Adjust the gap between items if needed */
+    flex-wrap: wrap; /* Allow items to wrap if necessary */
+  }
+
+  .flexarea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin: 0 auto; /* Center the search bar */
+  }
+    
+  .search-bar input {
+    border-radius: 15px;
+  }
+  .search-bar button {
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgba(9,136,144,1);
+    color: #fff;
+    cursor: pointer;
+  }
+  .search-bar button:hover {
+    background-color: rgba(9, 135, 144, 0.884);
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    
+  }
+  .luotapahtumabutton {
+    background-color: #008CBA;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 15px;
+    display: inline-flex;
+    float: right;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+  .luotapahtumabutton:hover {
+    background-color: #008bbad7;
+  }
+  .profile {
+    background-color: #008CBA;
+    color: white;
+    padding: 0px 20px;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 0px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 30px;
+  }
   
+  .profile a {
+    align-items: center;
+  }
+  .profile a:hover {
+    color: #ffffff;
+  }
   
   section {
     flex: 1;
-    /* display: block; */
     padding: 1.5rem 1rem 1rem 1rem;
-    
     max-width: 30rem;
-    /* padding: 15px; */
     margin-left: auto;
     margin-right: auto;
     word-wrap: break-word;
@@ -175,21 +251,7 @@
     background-color: #fdd;
   }
 
-  .luotapahtumabutton {
-    background-color: #008CBA;
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 30px;
-  }
-  .luotapahtumabutton:hover {
-    background-color: #008bbad7;
-  }
-
+  
   .error {
     color: red;
     font-size: 0.8rem;
@@ -208,45 +270,14 @@
     color: #975579;
   }
   
-  header {
-    padding: 1rem 1.5rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-  }
-
-  .flexarea {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1rem;
-  }
-
-  .search-bar {
-    display: flex;
-
-  }
-  .search-bar input {
-    border-radius: 15px;
-  }
-  .search-bar button {
-    padding: 6px 14px;
-    border-radius: 15px;
-    border: none;
-    background-color: rgba(9,136,144,1);
-    color: #fff;
-    cursor: pointer;
-  }
-  .search-bar button:hover {
-    background-color: rgba(9, 135, 144, 0.884);
-  }
   
+  @media screen and (max-width: 1060px) {
+    .header-content {
+      margin-left: 0px;
+    }
+  }
 
-
-
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 920px) {
     
   .event {
       grid-template-columns: 1fr; /* Stack all columns vertically */
@@ -259,26 +290,46 @@
 
   .event-name, .event-time, .event-city, .event-details {
       min-width: auto; /* Remove fixed min-width to allow for better wrapping */
+      text-align: center;
   }
 
   header {
     flex-direction: column;
     padding: 1rem;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+    align-items: center;
+    justify-content: center;
   }
-
+  .header-content {
+    flex-direction: column;
+    padding: 1rem;
+    margin-left: 0px;
+  }
   .luotapahtumabutton {
-    background-color: #008CBA;
-    color: white;
-    padding: 14px 25px;
-    margin-top: 12px;
-    display: inline-block;
+    margin-top: 1rem;
+    padding: 14px 25px;   
+  }
+  
+  .search-bar {
+    flex-direction: column;
+    gap: 0.5rem;
     
   }
-
-  .search-bar {
-    display: flex;
-    margin-top: 10px;
+  .search-bar input,
+  .search-bar button {
+    width: 100%; /* Full width on small screens */
+  }
+  .header-actions {
+    flex-direction: column;
+    
+  }
+  .profile {
+    flex-direction: column;
+    margin: 0px;
+    margin-top: 15px;
+  }
+  section h1 {
+    margin-bottom: 1rem;
   }
 
   .tapahtumat > div {
@@ -297,7 +348,7 @@
     flex-direction: column;
     
   }
-
+ 
   
   }
   
