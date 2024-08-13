@@ -5,23 +5,23 @@
 <form action="" method="POST">
   <div>
     <label for="nimi">Nimi:</label>
-    <input id="nimi" type="text" name="nimi" value="<?= getValue($formdata,'nimi') ?>">
-    <div class="error"><?= getValue($error,'nimi'); ?></div>
+    <input id="nimi" type="text" name="nimi" value="<?= htmlspecialchars(getValue($formdata,'nimi')) ?>">
+    <div class="error"><?= htmlspecialchars(getValue($error,'nimi')); ?></div>
   </div>
   <div>
     <label for="email">Sähköposti:</label>
-    <input type="text" name="email" value="<?= getValue($formdata,'email') ?>">
-    <div class="error"><?= getValue($error,'email'); ?></div>
+    <input type="email" name="email" value="<?= htmlspecialchars(getValue($formdata,'email')) ?>">
+    <div class="error"><?= htmlspecialchars(getValue($error,'email')); ?></div>
   </div>
   <div>
     <label for="kaupunki">Kaupunki:</label>
-    <input id="kaupunki" type="text" name="kaupunki" value="<?= getValue($formdata,'kaupunki')?>">
-    <div class="error"><?= getValue($error,'kaupunki'); ?></div>
-    </div>
+    <input id="kaupunki" type="text" name="kaupunki" value="<?= htmlspecialchars(getValue($formdata,'kaupunki')) ?>">
+    <div class="error"><?= htmlspecialchars(getValue($error,'kaupunki')); ?></div>
+  </div>
   <div>
     <label for="salasana1">Salasana:</label>
-    <input type="password" name="salasana1">
-    <div class="error"><?= getValue($error,'salasana'); ?></div>
+    <input id="salasana1" type="password" name="salasana1">
+    <div class="error"><?= htmlspecialchars(getValue($error,'salasana')); ?></div>
   </div>
   <div>
     <label for="salasana2">Salasana uudelleen:</label>

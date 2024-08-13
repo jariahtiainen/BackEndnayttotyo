@@ -1,10 +1,10 @@
-<!--Remove this debug section when no longer needed -->
+<!--Comment out/Remove this debug section when no longer needed -->
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 ?>
-<!--Remove this debug section when no longer needed -->
+<!--Comment out/Remove this debug section when no longer needed -->
 
 <?php
   session_start();
@@ -94,7 +94,7 @@ error_reporting(E_ALL);
           echo $templates->render('login_required', ['error' => ['Kirjaudu sisään luodaksesi tapahtuman.']]);
           break;
         }
-
+        //var_dump($luoja_id);
         $formdata = cleanArrayData($_POST);
 
         // Check for empty fields

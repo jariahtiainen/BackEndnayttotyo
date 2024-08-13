@@ -63,8 +63,10 @@
       value="<?php echo htmlspecialchars($formdata['aloituspaikka'] ?? ''); ?>"
     >
   </div>
+  <div class="tooltip">
   <div class="button-container">
     <input type="submit" name="laheta" value="Luo tapahtuma" class="button">
-    <div class="notification-message">Nappi luo uuden tapahtuman tietokantaan, mutta bugi aiheuttaa valkoisen ruudun.</div>
+    
+    <span class="tooltiptext">Bugi: valkoinen ruutu tapahtuman luomisen jälkeen. </span></div>
   </div>
 </form>

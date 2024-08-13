@@ -99,7 +99,7 @@
   .profile {
     background-color: #008CBA;
     color: white;
-    padding: 0px 20px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     margin-right: 0px;
@@ -241,6 +241,31 @@
     font-size: 0.875rem;
     margin-top: 0.5rem;
     max-width: 200px;
+  }
+  .tooltip {
+    position: relative;
+    
+    
+  }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #ff0000;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 5;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
   }
 
   .error-field {
